@@ -2,13 +2,12 @@ FROM node:24.12.0
 
 WORKDIR /app
 
-COPY ./package.json .
-
-COPY ./package-lock.json .
-
+COPY package*.json .
 RUN npm ci
 
 COPY . .
+
+RUN npx prisma generate
 
 RUN npm run build
 
