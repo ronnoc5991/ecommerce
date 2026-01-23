@@ -21,6 +21,7 @@ import { ZodValidationPipe } from '../pipes/zod-validation-pipe.js';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  // TODO: allow for search params '/products?audience=men&category=shirts'
   @Get()
   async getAll(): Promise<Array<Product>> {
     return this.productsService.getAllProducts();
