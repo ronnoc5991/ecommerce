@@ -6,6 +6,11 @@ services:
       - ./db/.env
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
   backend:
     build: ./backend
     env_file:
@@ -16,6 +21,9 @@ services:
       - ./backend:/app
       - /app/node_modules
     command: npm run start:dev
+    depends_on:
+      database:
+        condition: service_healthy
 
 volumes:
   db_data:
