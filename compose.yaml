@@ -24,6 +24,16 @@ services:
     depends_on:
       database:
         condition: service_healthy
+  client:
+    build: ./client
+    env_file:
+      - ./client/.env
+    ports:
+      - 3001:3000
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    command: ["npm", "run", "dev"]
 
 volumes:
   db_data:

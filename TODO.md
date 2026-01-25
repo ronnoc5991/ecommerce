@@ -3,7 +3,6 @@
 - change category 'name' to 'slug'? don't display IT, display a string associated with it
 - need to make sure that the category names are 'normalized' as either all caps or all lowercase, and maybe separated with dashes?
 
-- add client to docker compose
 - create a PLP
 - create a PDP
 
