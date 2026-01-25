@@ -11,5 +11,9 @@ done
 
 echo "Database is up"
 
+echo "Applying migrations..."
 # apply schema to db
 npx prisma migrate deploy
+
+echo "Starting application..."
+npm run start:dev
