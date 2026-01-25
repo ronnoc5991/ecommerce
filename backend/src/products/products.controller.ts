@@ -22,6 +22,7 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   // TODO: allow for search params '/products?audience=men&category=shirts'
+  // TODO: should this return variants as well?
   @Get()
   async getAll(): Promise<Array<Product>> {
     return this.productsService.getAllProducts();

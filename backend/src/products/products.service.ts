@@ -14,6 +14,9 @@ export class ProductsService {
       where: {
         id,
       },
+      include: {
+        variants: true,
+      },
     });
   }
 
