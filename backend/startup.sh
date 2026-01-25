@@ -13,5 +13,3 @@ echo "Database is up"
 
 # apply schema to db
 npx prisma migrate deploy
-# seed db with mock data
-npx prisma db seed
