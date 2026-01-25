@@ -1,8 +1,13 @@
 # TODO
 
 - change category 'name' to 'slug'? don't display IT, display a string associated with it
+- need to make sure that the category names are 'normalized' as either all caps or all lowercase, and maybe separated with dashes?
 
-- check for existing category before allowing product creation?
+- add client to docker compose
+- create a PLP
+- create a PDP
+
+- paginate the products? (this can come later, when there are a lot of products)
 
 - add admin flow (authentication, authorization)
 - Create admin flow:
