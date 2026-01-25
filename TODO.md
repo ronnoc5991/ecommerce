@@ -4,6 +4,7 @@
 
 - check for existing category before allowing product creation?
 
+- add admin flow (authentication, authorization)
 - Create admin flow:
 - allow for product creation
 - allow for variant creation

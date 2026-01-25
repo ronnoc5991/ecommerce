@@ -21,8 +21,10 @@ enum Audience {
 
 model Product {
   id          Int        @id @default(autoincrement())
+  // Should this be a slug? if we i18n
   name        String     @unique
   audience    Audience
+  // How does this play with i18n? it would have to live separately
   description String     @default("")
   variants    Variant[]
   categories  Category[]
@@ -47,6 +49,7 @@ model Variant {
 
 model Category {
   id       Int       @id @default(autoincrement())
+  // should this be a slug already? we want to avoid casing conflicts... 'Shirt' vs 'shirt'
   name     String    @unique
   products Product[]
 }
