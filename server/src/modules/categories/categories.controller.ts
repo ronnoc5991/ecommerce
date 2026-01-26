@@ -6,7 +6,7 @@ import {
   type CreateCategoryDto,
   createCategorySchema,
 } from './categories.schema.js';
-import { type CustomResponse } from '../../../../shared/types.js';
+import { type CustomResponse } from 'shared';
 
 @Controller('categories')
 export class CategoriesController {

@@ -12,27 +12,44 @@ services:
       timeout: 5s
       retries: 10
   server:
-    build: ./server
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
     env_file:
       - ./server/.env
     ports:
       - 3000:3000
     volumes:
-      - ./server:/app
+      - ./server:/app/server
+      - ./shared:/app/shared
       - /app/node_modules
+      - /app/server/node_modules
+      - /app/server/generated
     command: ["./startup.sh"]
     depends_on:
       database:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
   client:
-    build: ./client
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
     env_file:
       - ./client/.env
     ports:
       - 3001:3000
     volumes:
-      - ./client:/app
+      - ./client:/app/client
+      - ./shared:/app/shared
       - /app/node_modules
+      - /app/client/node_modules
+    depends_on:
+      server:
+        condition: service_healthy
     command: ["npm", "run", "dev"]
 
 volumes:

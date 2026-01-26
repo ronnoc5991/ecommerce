@@ -1,4 +1,4 @@
-import { type CustomResponse } from "../../shared/types";
+import { type CustomResponse } from "shared";
 
 type ServerResponse<T> =
   | {

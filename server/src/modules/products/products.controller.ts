@@ -16,7 +16,7 @@ import {
   type CreateProductDto,
 } from './products.schema.js';
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
-import { CustomResponse } from '../../../../shared/types.js';
+import { CustomResponse } from 'shared';
 
 @Controller('products')
 export class ProductsController {

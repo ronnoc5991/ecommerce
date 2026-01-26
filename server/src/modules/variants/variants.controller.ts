@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { VariantsService, VariantSummary } from './variants.service.js';
-import { CustomResponse } from '../../../../shared/types.js';
+import { CustomResponse } from 'shared';
 
 @Controller('variants')
 export class VariantsController {

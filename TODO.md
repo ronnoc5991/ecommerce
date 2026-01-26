@@ -1,11 +1,5 @@
 # TODO
 
-- refactor to allow for shared directory
-- update docker images
-- update mounts in docker compose
-- use workspaces like AI suggests
-- test that things work (images build, compose works, etc)
-
 - change category 'name' to 'slug'? don't display IT, display a string associated with it
 - need to make sure that the category names are 'normalized' as either all caps or all lowercase, and maybe separated with dashes?
 
@@ -19,3 +13,5 @@
 
 - should I have a client function for each server endpoint?
 - then I could type out the arguments... and the return type
+
+- move shared devdeps to the root package.json (shared is currently only buildable by accident since it relies on tsc but only has it as a result of peer packages having it)

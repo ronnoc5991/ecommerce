@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "ES2022",
+    "strict": true
+  },
+  "include": ["src"]
+}
