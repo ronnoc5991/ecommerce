@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // should catch Next Links with non existent hrefs during dev/build
+  typedRoutes: true,
 };
 
 export default nextConfig;
