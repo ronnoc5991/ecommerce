@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from '../../generated/prisma/client.js';
-import { prisma } from '../../lib/prisma.js';
+import { Product } from '../../../generated/prisma/client.js';
+import { prisma } from '../../../lib/prisma.js';
 import { CreateProductDto } from './products.schema.js';
 
 @Injectable()

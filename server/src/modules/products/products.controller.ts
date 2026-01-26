@@ -9,13 +9,14 @@ import {
   Put,
   UsePipes,
 } from '@nestjs/common';
-import { Product } from '../../generated/prisma/client.js';
+import { Product } from '../../../generated/prisma/client.js';
 import { ProductsService } from './products.service.js';
 import {
   createProductSchema,
   type CreateProductDto,
 } from './products.schema.js';
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe.js';
+import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
+import { CustomResponse } from '../../../../shared/types.js';
 
 @Controller('products')
 export class ProductsController {
@@ -24,12 +25,15 @@ export class ProductsController {
   // TODO: allow for search params '/products?audience=men&category=shirts'
   // TODO: should this return variants as well?
   @Get()
-  async getAll(): Promise<Array<Product>> {
-    return this.productsService.getAllProducts();
+  async getAll(): Promise<CustomResponse<Array<Product>>> {
+    const data = await this.productsService.getAllProducts();
+    return { data };
   }
 
   @Get(':id')
-  async getById(@Param('id', ParseIntPipe) id: number): Promise<Product> {
+  async getById(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<CustomResponse<Product>> {
     const product = await this.productsService.getProductById(id);
 
     if (product === null) {
@@ -37,15 +41,16 @@ export class ProductsController {
       throw new Error('Unable to find product');
     }
 
-    return product;
+    return { data: product };
   }
 
   @Post()
   @UsePipes(new ZodValidationPipe(createProductSchema))
   async createProduct(
     @Body() createProductDto: CreateProductDto,
-  ): Promise<Product> {
-    return this.productsService.createProduct(createProductDto);
+  ): Promise<CustomResponse<Product>> {
+    const data = await this.productsService.createProduct(createProductDto);
+    return { data };
   }
 
   @Put(':id')
@@ -53,13 +58,16 @@ export class ProductsController {
     @Param('id', ParseIntPipe) id: number,
     @Body(new ZodValidationPipe(createProductSchema))
     createProductDto: CreateProductDto,
-  ): Promise<Product> {
-    console.log(createProductDto);
-    return this.productsService.updateProduct(id, createProductDto);
+  ): Promise<CustomResponse<Product>> {
+    const data = await this.productsService.updateProduct(id, createProductDto);
+    return { data };
   }
 
   @Delete(':id')
-  async deleteProduct(@Param('id', ParseIntPipe) id: number): Promise<Product> {
-    return this.productsService.deleteProduct(id);
+  async deleteProduct(
+    @Param('id', ParseIntPipe) id: number,
+  ): Promise<CustomResponse<Product>> {
+    const data = await this.productsService.deleteProduct(id);
+    return { data };
   }
 }

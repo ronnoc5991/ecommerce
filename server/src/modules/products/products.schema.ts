@@ -1,4 +1,4 @@
-import { Audience } from '../../generated/prisma/enums.js';
+import { Audience } from '../../../generated/prisma/enums.js';
 import { z } from 'zod';
 
 export const createProductSchema = z
