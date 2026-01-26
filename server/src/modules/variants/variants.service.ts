@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Product, Variant } from '../../../generated/prisma/client.js';
 import { prisma } from '../../../lib/prisma.js';
 
-type DesiredShape = {
+export type VariantSummary = {
   variant: Variant;
   product: Product;
   variants: Array<Variant>;
@@ -11,8 +11,8 @@ type DesiredShape = {
 @Injectable()
 export class VariantsService {
   // TODO: transform this result into a more convenient shape:
-  async getVariantBySku(sku: string): Promise<Variant | null> {
-    return await prisma.variant.findUnique({
+  async getVariantBySku(sku: string): Promise<VariantSummary | null> {
+    const data = await prisma.variant.findUnique({
       where: {
         sku,
       },
@@ -24,6 +24,38 @@ export class VariantsService {
         },
       },
     });
+
+    if (!data) return null;
+
+    const {
+      sku: variantSku,
+      color,
+      id,
+      price,
+      productId,
+      size,
+      stock,
+      product,
+    } = data;
+
+    return {
+      variant: {
+        id, // does a client need this?
+        sku: variantSku,
+        size,
+        color,
+        price,
+        stock,
+        productId,
+      },
+      product: {
+        id: product.id,
+        name: product.name,
+        audience: product.audience,
+        description: product.description,
+      },
+      variants: product.variants,
+    };
   }
 
   // async createVariant(createVariantDto: CreateVariantDto): Promise<Variant> {

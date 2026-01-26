@@ -1,6 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { VariantsService } from './variants.service.js';
-import { Variant } from '../../../generated/prisma/client.js';
+import { VariantsService, VariantSummary } from './variants.service.js';
 import { CustomResponse } from '../../../../shared/types.js';
 
 @Controller('variants')
@@ -8,15 +7,17 @@ export class VariantsController {
   constructor(private readonly variantsService: VariantsService) {}
 
   @Get(':sku')
-  async getById(@Param('sku') sku: string): Promise<CustomResponse<Variant>> {
-    const variant = await this.variantsService.getVariantBySku(sku);
+  async getById(
+    @Param('sku') sku: string,
+  ): Promise<CustomResponse<VariantSummary>> {
+    const data = await this.variantsService.getVariantBySku(sku);
 
-    if (variant === null) {
+    if (data === null) {
       // TODO: handle this better
       throw new Error('Unable to find variant');
     }
 
-    return { data: variant };
+    return { data };
   }
 
   // @Post()
