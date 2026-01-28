@@ -1,16 +1,13 @@
 services:
-  database:
-    image: mysql:8.4.7
-    restart: always
-    env_file:
-      - ./db/.env
+  shared:
+    build:
+      context: .
+      dockerfile: ./shared/Dockerfile
     volumes:
-      - db_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
+      - ./shared:/app/shared
+      - /app/node_modules
+      - /app/shared/node_modules
+    command: npm run dev --workspace=shared
   server:
     build:
       context: .
@@ -51,6 +48,18 @@ services:
       server:
         condition: service_healthy
     command: ["npm", "run", "dev"]
+  database:
+    image: mysql:8.4.7
+    restart: always
+    env_file:
+      - ./db/.env
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 volumes:
   db_data:

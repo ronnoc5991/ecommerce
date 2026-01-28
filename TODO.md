@@ -15,3 +15,8 @@
 - then I could type out the arguments... and the return type
 
 - move shared devdeps to the root package.json (shared is currently only buildable by accident since it relies on tsc but only has it as a result of peer packages having it)
+
+- decide what things go into shared...
+- DTOs? (the whole point of these is transferring data between client and server... right?)
+- Zod stuff? does that make sense?
+- the return types for every endpoint? (the backend needs to return something... and the frontend needs to know what that thing is... the alternative would be to recreate the types in the frontend... but the great thing about everything being in TS is that you can share types across server and client... should I recreate the endpoints in types and share them?)
