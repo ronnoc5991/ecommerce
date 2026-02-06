@@ -1,6 +1,6 @@
+import { type SharedResponse } from 'shared';
 import { Controller, Get, Param } from '@nestjs/common';
 import { VariantsService, VariantSummary } from './variants.service.js';
-import { CustomResponse } from 'shared';
 
 @Controller('variants')
 export class VariantsController {
@@ -9,7 +9,7 @@ export class VariantsController {
   @Get(':sku')
   async getById(
     @Param('sku') sku: string,
-  ): Promise<CustomResponse<VariantSummary>> {
+  ): Promise<SharedResponse<VariantSummary>> {
     const data = await this.variantsService.getVariantBySku(sku);
 
     if (data === null) {

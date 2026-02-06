@@ -15,7 +15,7 @@ import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
 import {
   type CreateProductDto,
   createProductSchema,
-  CustomResponse,
+  type SharedResponse,
 } from 'shared';
 
 @Controller('products')
@@ -25,7 +25,7 @@ export class ProductsController {
   // TODO: allow for search params '/products?audience=men&category=shirts'
   // TODO: should this return variants as well?
   @Get()
-  async getAll(): Promise<CustomResponse<Array<Product>>> {
+  async getAll(): Promise<SharedResponse<Array<Product>>> {
     const data = await this.productsService.getAllProducts();
     return { data };
   }
@@ -33,7 +33,7 @@ export class ProductsController {
   @Get(':id')
   async getById(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<CustomResponse<Product>> {
+  ): Promise<SharedResponse<Product>> {
     const product = await this.productsService.getProductById(id);
 
     if (product === null) {
@@ -48,7 +48,7 @@ export class ProductsController {
   @UsePipes(new ZodValidationPipe(createProductSchema))
   async createProduct(
     @Body() createProductDto: CreateProductDto,
-  ): Promise<CustomResponse<Product>> {
+  ): Promise<SharedResponse<Product>> {
     const data = await this.productsService.createProduct(createProductDto);
     return { data };
   }
@@ -58,7 +58,7 @@ export class ProductsController {
     @Param('id', ParseIntPipe) id: number,
     @Body(new ZodValidationPipe(createProductSchema))
     createProductDto: CreateProductDto,
-  ): Promise<CustomResponse<Product>> {
+  ): Promise<SharedResponse<Product>> {
     const data = await this.productsService.updateProduct(id, createProductDto);
     return { data };
   }
@@ -66,7 +66,7 @@ export class ProductsController {
   @Delete(':id')
   async deleteProduct(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<CustomResponse<Product>> {
+  ): Promise<SharedResponse<Product>> {
     const data = await this.productsService.deleteProduct(id);
     return { data };
   }
