@@ -1,11 +1,8 @@
 import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
+import { type CreateCategoryDto, createCategorySchema } from 'shared';
 import { CategoriesService } from './categories.service.js';
 import { Category } from '../../../generated/prisma/client.js';
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
-import {
-  type CreateCategoryDto,
-  createCategorySchema,
-} from './categories.schema.js';
 import { type CustomResponse } from 'shared';
 
 @Controller('categories')
