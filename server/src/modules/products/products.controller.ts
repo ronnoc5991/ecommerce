@@ -16,6 +16,8 @@ import {
   type CreateProductDto,
   createProductSchema,
   type ServerResponse,
+  type GetAllProductsResponse,
+  GetAllProducts,
 } from 'shared';
 
 @Controller('products')
@@ -25,8 +27,9 @@ export class ProductsController {
   // TODO: allow for search params '/products?audience=men&category=shirts'
   // TODO: should this return variants as well?
   @Get()
-  async getAll(): Promise<ServerResponse<Array<Product>>> {
-    const data = await this.productsService.getAllProducts();
+  async getAll(): Promise<ServerResponse<GetAllProductsResponse>> {
+    const allProducts = await this.productsService.getAllProducts();
+    const data = GetAllProducts.response.parse(allProducts);
     return { data };
   }
 

@@ -28,3 +28,19 @@ export const GetProduct: APIContract<GetProductPathParams, GetProductResponse> =
     getClientPath: ({ productId }) => `/products/${productId}`,
     response: getProductResponse,
   };
+
+const getAllProductsResponse = z.array(
+  z.object({
+    id: z.number(),
+    name: z.string(),
+    audience: z.enum(Audience),
+  }),
+);
+
+export type GetAllProductsResponse = z.infer<typeof getAllProductsResponse>;
+
+export const GetAllProducts: APIContract<undefined, GetAllProductsResponse> = {
+  httpMethod: "GET",
+  getClientPath: () => "/products",
+  response: getAllProductsResponse,
+};

@@ -46,8 +46,7 @@ export async function fetchFromServer<TPathParams, TResponse>({
       };
     }
 
-    const json = (await response.json()) as ServerResponse<TResponse>;
-    const data = contract.response.parse(json.data);
+    const { data } = (await response.json()) as ServerResponse<TResponse>;
 
     return { ok: true, data };
   } catch (error) {
