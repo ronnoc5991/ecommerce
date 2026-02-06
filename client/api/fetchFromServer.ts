@@ -1,33 +1,47 @@
-import { type CustomResponse } from "shared";
+import { type APIContract } from "shared";
 
-type ServerResponse<T> =
+const HOST = "localhost:3000";
+
+type APIResult<T> =
   | {
+      ok: true;
       data: T;
-      isError: false;
     }
   | {
-      data: null;
-      isError: true;
+      ok: false;
+      error: unknown;
     };
 
-export async function fetchFromServer<T>(
-  endpoint: string,
-  init?: RequestInit,
-): Promise<ServerResponse<T>> {
+export async function fetchFromServer<TPathParams, TResponse>({
+  contract,
+  pathParams,
+  init,
+}: {
+  contract: APIContract<TPathParams, TResponse>;
+  pathParams: TPathParams;
+  init?: RequestInit;
+}): Promise<APIResult<TResponse>> {
   try {
-    // TODO: update with env variable for server domain:port
-    const response = await fetch("http://server:3000" + endpoint, init);
+    const response = await fetch(
+      `${HOST}${contract.getClientPath(pathParams)}`,
+      {
+        method: contract.httpMethod,
+        ...init,
+      },
+    );
 
     if (!response.ok) {
-      throw new Error();
+      return {
+        ok: false,
+        error: new Error(`HTTP ${response.status}`),
+      };
     }
 
-    const { data } = (await response.json()) as CustomResponse<T>;
-    return { data, isError: false };
-  } catch (e) {
-    return {
-      isError: true,
-      data: null,
-    };
+    const json = await response.json();
+    const data = contract.response.parse(json);
+
+    return { ok: true, data };
+  } catch (error) {
+    return { ok: false, error };
   }
 }

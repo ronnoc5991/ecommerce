@@ -16,6 +16,8 @@
 
 - move shared devdeps to the root package.json (shared is currently only buildable by accident since it relies on tsc but only has it as a result of peer packages having it)
 
+- shared tsconfig?
+
 - decide what things go into shared...
 - DTOs? (the whole point of these is transferring data between client and server... right?)
 - Zod stuff? does that make sense?

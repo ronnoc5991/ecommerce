@@ -11,12 +11,12 @@ import {
 } from '@nestjs/common';
 import { Product } from '../../../generated/prisma/client.js';
 import { ProductsService } from './products.service.js';
-import {
-  createProductSchema,
-  type CreateProductDto,
-} from './products.schema.js';
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
-import { CustomResponse } from 'shared';
+import {
+  type CreateProductDto,
+  createProductSchema,
+  CustomResponse,
+} from 'shared';
 
 @Controller('products')
 export class ProductsController {

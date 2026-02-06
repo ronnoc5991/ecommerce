@@ -1,4 +1,4 @@
-import { Audience } from 'generated/prisma/enums.js';
+import { Audience } from 'shared';
 import { ProductCreateInput } from 'generated/prisma/models.js';
 
 export const products: Array<ProductCreateInput> = [
