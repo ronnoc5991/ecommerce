@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, UsePipes } from '@nestjs/common';
 import {
   type CreateCategoryDto,
-  type SharedResponse,
+  type ServerResponse,
   createCategorySchema,
 } from 'shared';
 import { CategoriesService } from './categories.service.js';
@@ -13,7 +13,7 @@ export class CategoriesController {
   constructor(private readonly service: CategoriesService) {}
 
   @Get()
-  async getAll(): Promise<SharedResponse<Array<Category>>> {
+  async getAll(): Promise<ServerResponse<Array<Category>>> {
     const data = await this.service.getAllCategories();
     return { data };
   }
@@ -22,7 +22,7 @@ export class CategoriesController {
   @UsePipes(new ZodValidationPipe(createCategorySchema))
   async createCategory(
     @Body() createCategoryDto: CreateCategoryDto,
-  ): Promise<SharedResponse<Category>> {
+  ): Promise<ServerResponse<Category>> {
     const data = await this.service.createCategory(createCategoryDto);
     return { data };
   }
