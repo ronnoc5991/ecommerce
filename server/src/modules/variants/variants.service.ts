@@ -1,65 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { Product, Variant } from '../../../generated/prisma/client.js';
+import { Variant } from '../../../generated/prisma/client.js';
 import { prisma } from '../../../lib/prisma.js';
-
-export type VariantSummary = {
-  variant: Variant;
-  product: Product;
-  variants: Array<Variant>;
-};
 
 @Injectable()
 export class VariantsService {
-  // TODO: transform this result into a more convenient shape:
-  async getVariantBySku(sku: string): Promise<VariantSummary | null> {
+  // TODO: transform this result into a more convenient shape
+  // TODO: ensure product is getting through to client
+  async getVariantBySku(sku: string): Promise<Variant | null> {
     const data = await prisma.variant.findUnique({
       where: {
         sku,
       },
-      include: {
-        product: {
-          include: {
-            variants: true,
-          },
-        },
-      },
+      // TODO: include product and variants
+      // include: {
+      //   product: {
+      //     include: {
+      //       variants: true,
+      //     },
+      //   },
+      // },
     });
 
     if (!data) return null;
 
-    const {
-      sku: variantSku,
-      color,
-      id,
-      price,
-      productId,
-      size,
-      stock,
-      product,
-    } = data;
-
-    return {
-      variant: {
-        id, // does a client need this?
-        sku: variantSku,
-        size,
-        color,
-        price,
-        stock,
-        productId,
-      },
-      product: {
-        id: product.id,
-        name: product.name,
-        audience: product.audience,
-        description: product.description,
-      },
-      variants: product.variants,
-    };
+    return data;
   }
 
-  // async createVariant(createVariantDto: CreateVariantDto): Promise<Variant> {
-  //   TODO
+  // async createVariant(createVariantDto: CreateVariantDTO): Promise<Variant> {
+  //   const created = await prisma.variant.create({ data: createVariantDto });
+  //   return created;
   // }
 
   // async updateVariant(

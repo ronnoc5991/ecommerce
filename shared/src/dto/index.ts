@@ -1,2 +1,3 @@
-export * from "./product.dto.js";
-export * from "./create-product.dto.js";
+export * from "./product/index.js";
+export * from "./category/index.js";
+export * from "./variant/index.js";

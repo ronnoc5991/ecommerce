@@ -1,6 +1,7 @@
-import { type ServerResponse } from 'shared';
 import { Controller, Get, Param } from '@nestjs/common';
-import { VariantsService, VariantSummary } from './variants.service.js';
+import { VariantsService } from './variants.service.js';
+import { type ContractFulfillment } from 'src/types/ContractFulfillment.js';
+import { GetVariant } from 'shared';
 
 @Controller('variants')
 export class VariantsController {
@@ -9,7 +10,7 @@ export class VariantsController {
   @Get(':sku')
   async getById(
     @Param('sku') sku: string,
-  ): Promise<ServerResponse<VariantSummary>> {
+  ): ContractFulfillment<typeof GetVariant> {
     const data = await this.variantsService.getVariantBySku(sku);
 
     if (data === null) {
@@ -17,7 +18,7 @@ export class VariantsController {
       throw new Error('Unable to find variant');
     }
 
-    return { data };
+    return { data: GetVariant.response.parse(data) };
   }
 
   // @Post()

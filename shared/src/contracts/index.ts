@@ -1,2 +1,3 @@
-export * from "./categories.js";
 export * from "./product/index.js";
+export * from "./category/index.js";
+export * from "./variant/index.js";
