@@ -9,68 +9,71 @@ import {
   Put,
   UsePipes,
 } from '@nestjs/common';
-import { Product } from '../../../generated/prisma/client.js';
 import { ProductsService } from './products.service.js';
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
 import {
-  type CreateProductDto,
-  createProductSchema,
-  type ServerResponse,
-  type GetAllProductsResponse,
+  CreateProduct,
+  type CreateProductDTO,
+  DeleteProduct,
   GetAllProducts,
+  GetProduct,
+  type ProductDTO,
+  ProductSchema,
+  UpdateProduct,
 } from 'shared';
+import { type ContractFulfillment } from '../../types/ContractFulfillment.js';
 
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  // TODO: allow for search params '/products?audience=men&category=shirts'
-  // TODO: should this return variants as well?
   @Get()
-  async getAll(): Promise<ServerResponse<GetAllProductsResponse>> {
+  async getAll(): ContractFulfillment<typeof GetAllProducts> {
     const allProducts = await this.productsService.getAllProducts();
-    const data = GetAllProducts.response.parse(allProducts);
-    return { data };
+    return { data: GetAllProducts.response.parse(allProducts) };
   }
 
   @Get(':id')
-  async getById(
+  async getOne(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<ServerResponse<Product>> {
+  ): ContractFulfillment<typeof GetProduct> {
     const product = await this.productsService.getProductById(id);
 
     if (product === null) {
-      // TODO: handle this better
       throw new Error('Unable to find product');
     }
 
-    return { data: product };
+    return {
+      data: GetProduct.response.parse(product),
+    };
   }
 
   @Post()
-  @UsePipes(new ZodValidationPipe(createProductSchema))
-  async createProduct(
-    @Body() createProductDto: CreateProductDto,
-  ): Promise<ServerResponse<Product>> {
-    const data = await this.productsService.createProduct(createProductDto);
-    return { data };
+  @UsePipes(new ZodValidationPipe(CreateProduct.body))
+  async create(
+    @Body() createProductDto: CreateProductDTO,
+  ): ContractFulfillment<typeof CreateProduct> {
+    const created = await this.productsService.createProduct(createProductDto);
+    return { data: CreateProduct.response.parse(created) };
   }
 
   @Put(':id')
-  async updateProduct(
+  async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body(new ZodValidationPipe(createProductSchema))
-    createProductDto: CreateProductDto,
-  ): Promise<ServerResponse<Product>> {
-    const data = await this.productsService.updateProduct(id, createProductDto);
-    return { data };
+    @Body(new ZodValidationPipe(ProductSchema))
+    productDto: ProductDTO,
+  ): ContractFulfillment<typeof UpdateProduct> {
+    const updated = await this.productsService.updateProduct(id, productDto);
+    return { data: UpdateProduct.response.parse(updated) };
   }
 
   @Delete(':id')
-  async deleteProduct(
+  async delete(
     @Param('id', ParseIntPipe) id: number,
-  ): Promise<ServerResponse<Product>> {
-    const data = await this.productsService.deleteProduct(id);
-    return { data };
+  ): ContractFulfillment<typeof DeleteProduct> {
+    const deleted = await this.productsService.deleteProduct(id);
+    return {
+      data: DeleteProduct.response.parse(deleted),
+    };
   }
 }

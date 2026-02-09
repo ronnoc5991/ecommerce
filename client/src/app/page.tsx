@@ -7,8 +7,7 @@ export default async function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        {response.ok &&
-          response.data.map((product: any) => <li>{product.name}</li>)}
+        {response.ok && response.data.map((product) => <li>{product.name}</li>)}
       </main>
     </div>
   );

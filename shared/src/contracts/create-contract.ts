@@ -1,0 +1,10 @@
+import z from "zod";
+import { Contract } from "../types/index.js";
+
+export const createContract = <
+  TPathParams,
+  const TSchema extends z.ZodType = z.ZodType,
+  const TBodySchema extends z.ZodType | undefined = undefined,
+>(
+  contract: Contract<TPathParams, TSchema, TBodySchema>,
+) => contract;

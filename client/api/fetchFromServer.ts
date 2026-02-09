@@ -1,41 +1,55 @@
-import { ServerResponse, type APIContract } from "shared";
+import { ContractResponse, ContractWithBody, type Contract } from "shared";
+import z from "zod";
 
 // TODO: move this to env
 const HOST = "http://server:3000";
 
-type APIResult<T> =
-  | {
+type APIResult<T extends Contract<any, any, any>> = Promise<
+  | (ContractResponse<T> & {
       ok: true;
-      data: T;
-    }
+    })
   | {
       ok: false;
       error: unknown;
-    };
+    }
+>;
 
-// TODO: think through the 'shared' aspect of this....
-// the server returns a standard shaped response
-// that is the shared response
-// so every response (if it is 'ok') will be of that shape
-// we are immediately reshaping that thing in this function...
-// why do we need the shared response then?  Just to standardize the return across endpoints?
-// what would it look like if we did not have a standardized return shape?
-
-export async function fetchFromServer<TPathParams, TResponse>({
+export async function fetchFromServer<const T extends Contract<any, any, any>>({
   contract,
   pathParams,
+  body,
   init,
-}: {
-  contract: APIContract<TPathParams, TResponse>;
-  pathParams: TPathParams;
-  init?: RequestInit;
-}): Promise<APIResult<TResponse>> {
+}: T extends ContractWithBody<any, any, any>
+  ? {
+      contract: T;
+      pathParams: Parameters<T["getClientPath"]>[0];
+      body: z.infer<T["body"]>;
+      init?: RequestInit;
+    }
+  : {
+      contract: T;
+      pathParams: Parameters<T["getClientPath"]>[0];
+      body?: never;
+      init?: RequestInit;
+    }): APIResult<T> {
+  let serializedBody: string | undefined;
+
+  if ("body" in contract) {
+    const parsed = contract.body.parse(body);
+    serializedBody = JSON.stringify(parsed);
+  }
+
   try {
     const response = await fetch(
       `${HOST}${contract.getClientPath(pathParams)}`,
       {
-        method: contract.httpMethod,
         ...init,
+        method: contract.httpMethod,
+        body: serializedBody,
+        headers: {
+          "Content-Type": "application/json",
+          ...init?.headers,
+        },
       },
     );
 
@@ -46,7 +60,7 @@ export async function fetchFromServer<TPathParams, TResponse>({
       };
     }
 
-    const { data } = (await response.json()) as ServerResponse<TResponse>;
+    const { data } = (await response.json()) as ContractResponse<T>;
 
     return { ok: true, data };
   } catch (error) {

@@ -1,2 +1,1 @@
-export * from "./categories.js";
 export * from "./product/index.js";
