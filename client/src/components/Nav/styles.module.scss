@@ -1,0 +1,26 @@
+// give the nav a fixed height?
+// mobile first?
+// breakpoints?
+// sticky?
+// make it appear when scrolling up? hide when scrolling down? use transition?
+
+// I want the other thing to be sticky...
+// and the thing on the inside to move up/down based on scroll direction?
+// and if we are past the initial scroll height...
+
+// what do I want to do?
+// get this live or polish it?
+// in reality both...
+// but an MVP is worth doing
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //   TODO: use a variable for this color
+  border-bottom: 1px solid rgb(75, 75, 75);
+
+  padding: 12px;
+  height: 72px;
+  position: sticky;
+}
