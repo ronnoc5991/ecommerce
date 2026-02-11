@@ -1,5 +1,16 @@
 # TODO
 
+- think through nice API for 'shared' exports...
+- should there be a default export? Or everything separately exported?
+- what should the thing we import be called?
+
+- is there any way to ensure that the server implements the contracts?
+- what if I create a contract and the server just never implements it?
+
+- interesting observation/thought: if the contracts contain all relevant information about an exchange...
+  do we need to expose types at all? Or schemas? or anything extra? Could just expose the contracts and some utility types that extract types from the contracts...
+  then use those throughout the server and client... why would we need to expose things separately?
+
 - change category 'name' to 'slug'? don't display IT, display a string associated with it
 - need to make sure that the category names are 'normalized' as either all caps or all lowercase, and maybe separated with dashes?
 
@@ -11,14 +22,4 @@
 
 - add filtering to GET routes (GET products?audience=men&category=shirts)
 
-- should I have a client function for each server endpoint?
-- then I could type out the arguments... and the return type
-
-- move shared devdeps to the root package.json (shared is currently only buildable by accident since it relies on tsc but only has it as a result of peer packages having it)
-
 - shared tsconfig?
-
-- decide what things go into shared...
-- DTOs? (the whole point of these is transferring data between client and server... right?)
-- Zod stuff? does that make sense?
-- the return types for every endpoint? (the backend needs to return something... and the frontend needs to know what that thing is... the alternative would be to recreate the types in the frontend... but the great thing about everything being in TS is that you can share types across server and client... should I recreate the endpoints in types and share them?)

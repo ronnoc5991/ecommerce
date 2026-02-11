@@ -1,4 +1,4 @@
-import { fetchProduct } from "../../../../api/products";
+import apiClient from "@/api-client";
 // given a product variant's sku
 // fetch its parent product?
 // get parent product by child sku?
@@ -11,7 +11,7 @@ export default async function ProductDetailPage(
   props: PageProps<"/products/[sku]">,
 ) {
   const { sku } = await props.params;
-  const response = await fetchProduct(sku);
+  const response = await apiClient.product.getOne(sku);
 
   return (
     <div>

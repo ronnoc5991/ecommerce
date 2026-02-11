@@ -38,6 +38,8 @@ export type ContractResponse<T extends Contract<any, z.ZodType, any>> = {
 export type ContractBody<T extends ContractWithBody<any, any, any>> = z.infer<
   T["body"]
 >;
+
+// TODO: this should be exposed
 export enum Audience {
   MEN = "MEN",
   WOMEN = "WOMEN",

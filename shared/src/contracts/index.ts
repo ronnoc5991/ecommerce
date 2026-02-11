@@ -1,3 +1,9 @@
-export * from "./product/index.js";
-export * from "./category/index.js";
-export * from "./variant/index.js";
+import product from "./product.js";
+import variant from "./variant.js";
+import category from "./category.js";
+
+export default {
+  product,
+  variant,
+  category,
+};
