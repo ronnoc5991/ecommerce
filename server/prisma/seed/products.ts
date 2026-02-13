@@ -29,4 +29,31 @@ export const products: Array<ProductCreateInput> = [
       },
     },
   },
+  {
+    name: 'Wool Sweater',
+    audience: Audience.WOMEN,
+    categories: {
+      connect: {
+        name: 'Sweaters',
+      },
+    },
+  },
+  {
+    name: 'Cute Top',
+    audience: Audience.WOMEN,
+    categories: {
+      connect: {
+        name: 'Shirts',
+      },
+    },
+  },
+  {
+    name: 'Cute Pants',
+    audience: Audience.WOMEN,
+    categories: {
+      connect: {
+        name: 'Pants',
+      },
+    },
+  },
 ];

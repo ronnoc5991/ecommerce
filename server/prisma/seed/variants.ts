@@ -97,4 +97,40 @@ export const variants: Array<VariantCreateInput> = [
       },
     },
   },
+  {
+    color: 'Blue',
+    price: 2000,
+    size: 'M',
+    sku: 'wool-sweater-blue-m',
+    stock: 0,
+    product: {
+      connect: {
+        name: 'Wool Sweater',
+      },
+    },
+  },
+  {
+    color: 'Red',
+    price: 2000,
+    size: 'M',
+    sku: 'cute-top-red-m',
+    stock: 0,
+    product: {
+      connect: {
+        name: 'Cute Top',
+      },
+    },
+  },
+  {
+    color: 'Blue',
+    price: 2000,
+    size: 'M',
+    sku: 'cute-pants-blue-m',
+    stock: 0,
+    product: {
+      connect: {
+        name: 'Cute Pants',
+      },
+    },
+  },
 ];

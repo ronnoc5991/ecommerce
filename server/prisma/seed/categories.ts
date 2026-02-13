@@ -10,4 +10,7 @@ export const categories: Array<CategoryCreateInput> = [
   {
     name: 'Jackets',
   },
+  {
+    name: 'Sweaters',
+  },
 ];
