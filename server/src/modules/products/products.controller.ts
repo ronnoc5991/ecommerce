@@ -7,11 +7,12 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  Query,
   UsePipes,
 } from '@nestjs/common';
 import { ProductsService } from './products.service.js';
 import { ZodValidationPipe } from '../../pipes/zod-validation-pipe.js';
-import api from 'shared';
+import api, { AudienceSchema } from 'shared';
 import { type ContractFulfillment } from '../../types/ContractFulfillment.js';
 import z from 'zod';
 
@@ -22,8 +23,19 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Get()
-  async getAll(): ContractFulfillment<typeof getAll> {
-    const allProducts = await this.productsService.getAllProducts();
+  async getAll(
+    @Query('audience') audience: string,
+  ): ContractFulfillment<typeof getAll> {
+    const result = AudienceSchema.safeParse(audience.toUpperCase());
+
+    if (!result.success) {
+      throw new Error('Invalid audience');
+    }
+
+    const allProducts = await this.productsService.getAllProducts({
+      audience: result.data,
+    });
+
     return { data: getAll.response.parse(allProducts) };
   }
 

@@ -2,34 +2,34 @@ import z from "zod";
 
 type HTTPMethod = "GET" | "POST" | "PUT" | "DELETE";
 
-type BaseContract<TPathParams, TResponseValidator extends z.ZodType> = {
+type BaseContract<TParams, TResponseValidator extends z.ZodType> = {
   httpMethod: HTTPMethod;
-  getClientPath: (params: TPathParams) => string;
+  getClientPath: (params: TParams) => string;
   response: TResponseValidator;
 };
 
 export type ContractWithoutBody<
-  TPathParams,
+  TParams,
   TResponseValidator extends z.ZodType,
-> = BaseContract<TPathParams, TResponseValidator> & {
+> = BaseContract<TParams, TResponseValidator> & {
   body?: never;
 };
 
 export type ContractWithBody<
-  TPathParams,
+  TParams,
   TResponseValidator extends z.ZodType,
   TBodyValidator extends z.ZodType,
-> = BaseContract<TPathParams, TResponseValidator> & {
+> = BaseContract<TParams, TResponseValidator> & {
   body: TBodyValidator;
 };
 
 export type Contract<
-  TPathParams,
+  TParams,
   TResponseValidator extends z.ZodType,
   TBodyValidator extends z.ZodType | undefined = undefined,
 > = TBodyValidator extends z.ZodType
-  ? ContractWithBody<TPathParams, TResponseValidator, TBodyValidator>
-  : ContractWithoutBody<TPathParams, TResponseValidator>;
+  ? ContractWithBody<TParams, TResponseValidator, TBodyValidator>
+  : ContractWithoutBody<TParams, TResponseValidator>;
 
 export type ContractResponse<T extends Contract<any, z.ZodType, any>> = {
   data: z.infer<T["response"]>;
@@ -40,6 +40,7 @@ export type ContractBody<T extends ContractWithBody<any, any, any>> = z.infer<
 >;
 
 // TODO: this should be exposed
+// TODO: How can we keep this in sync with the prisma generated types?
 export enum Audience {
   MEN = "MEN",
   WOMEN = "WOMEN",

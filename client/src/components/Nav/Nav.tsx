@@ -37,8 +37,8 @@ export default function Nav({ isOpen, toggleIsOpen }: NavProps) {
       </ul>
       {isOpen && (
         <div id={MENU_ID} className={styles.menu} hidden={!isOpen}>
-          <a href="/mens">Mens</a>
-          <a href="/womens">Womens</a>
+          <a href="/men">Mens</a>
+          <a href="/women">Womens</a>
           <div className={styles.backdrop} onClick={toggleIsOpen}></div>
         </div>
       )}

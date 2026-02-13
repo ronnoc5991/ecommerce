@@ -1,12 +1,20 @@
 import { CreateProductDTO } from 'shared';
 import { Injectable } from '@nestjs/common';
 import { prisma } from '../../../lib/prisma.js';
-import { Product } from '../../../generated/prisma/client.js';
+import { Audience, Product } from '../../../generated/prisma/client.js';
 
 @Injectable()
 export class ProductsService {
-  async getAllProducts(): Promise<Array<Product>> {
-    return await prisma.product.findMany();
+  async getAllProducts({
+    audience,
+  }: {
+    audience?: Audience;
+  }): Promise<Array<Product>> {
+    return await prisma.product.findMany({
+      where: {
+        audience,
+      },
+    });
   }
 
   async getProductById(id: number): Promise<Product | null> {

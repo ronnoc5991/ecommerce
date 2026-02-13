@@ -20,19 +20,19 @@ type APIResult<T extends Contract<any, any, any>> = Promise<
 export function createClientFetch({ host }: ClientConfig) {
   async function clientFetch<const T extends Contract<any, any, any>>({
     contract,
-    pathParams,
+    params,
     body,
     init,
   }: T extends ContractWithBody<any, any, any>
     ? {
         contract: T;
-        pathParams: Parameters<T["getClientPath"]>[0];
+        params: Parameters<T["getClientPath"]>[0];
         body: z.infer<T["body"]>;
         init?: RequestInit;
       }
     : {
         contract: T;
-        pathParams: Parameters<T["getClientPath"]>[0];
+        params: Parameters<T["getClientPath"]>[0];
         body?: never;
         init?: RequestInit;
       }): APIResult<T> {
@@ -44,18 +44,15 @@ export function createClientFetch({ host }: ClientConfig) {
     }
 
     try {
-      const response = await fetch(
-        `${host}${contract.getClientPath(pathParams)}`,
-        {
-          ...init,
-          method: contract.httpMethod,
-          body: serializedBody,
-          headers: {
-            "Content-Type": "application/json",
-            ...init?.headers,
-          },
+      const response = await fetch(`${host}${contract.getClientPath(params)}`, {
+        ...init,
+        method: contract.httpMethod,
+        body: serializedBody,
+        headers: {
+          "Content-Type": "application/json",
+          ...init?.headers,
         },
-      );
+      });
 
       if (!response.ok) {
         return {

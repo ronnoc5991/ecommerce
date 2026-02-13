@@ -1,6 +1,7 @@
 import z from "zod";
 import { CreateProductSchema, ProductSchema } from "../schemas/index.js";
 import { createContract } from "../utils/create-contract.js";
+import { Audience } from "../types/index.js";
 
 const Create = createContract({
   httpMethod: "POST",
@@ -17,7 +18,8 @@ const Delete = createContract({
 
 const GetAll = createContract({
   httpMethod: "GET",
-  getClientPath: () => "/products",
+  getClientPath: ({ audience }: { audience: Audience }) =>
+    `/products?audience=${audience}`,
   response: z.array(ProductSchema),
 });
 

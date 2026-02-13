@@ -1,5 +1,5 @@
 import contracts from "../contracts/index.js";
-import { ContractBody } from "../types/index.js";
+import { Audience, ContractBody } from "../types/index.js";
 import { createClientFetch } from "./client-fetch.js";
 
 export type ClientConfig = {
@@ -19,34 +19,34 @@ export function createClient(config: ClientConfig) {
       ) {
         return clientFetch({
           contract: contracts.category.create,
-          pathParams: undefined,
+          params: undefined,
           body: createCategoryDTO,
         });
       },
       async getAll() {
         return clientFetch({
           contract: contracts.category.getAll,
-          pathParams: undefined,
+          params: undefined,
         });
       },
     },
     product: {
-      async getAll() {
+      async getAll(params: { audience: Audience }) {
         return clientFetch({
           contract: contracts.product.getAll,
-          pathParams: undefined,
+          params: params,
         });
       },
       async getOne(productId: string) {
         return clientFetch({
           contract: contracts.product.getOne,
-          pathParams: { productId },
+          params: { productId },
         });
       },
       async deleteProduct(productId: string) {
         return clientFetch({
           contract: contracts.product.deleteOne,
-          pathParams: { productId },
+          params: { productId },
         });
       },
       async create(
@@ -54,14 +54,14 @@ export function createClient(config: ClientConfig) {
       ) {
         return clientFetch({
           contract: contracts.product.create,
-          pathParams: undefined,
+          params: undefined,
           body: createProductDTO,
         });
       },
       async update(productDTO: ContractBody<typeof contracts.product.update>) {
         return clientFetch({
           contract: contracts.product.update,
-          pathParams: { productId: productDTO.id },
+          params: { productId: productDTO.id },
           body: productDTO,
         });
       },
@@ -70,7 +70,7 @@ export function createClient(config: ClientConfig) {
       async getOne(sku: string) {
         return clientFetch({
           contract: contracts.variant.getOne,
-          pathParams: { sku },
+          params: { sku },
         });
       },
     },
