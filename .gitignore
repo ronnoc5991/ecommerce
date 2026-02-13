@@ -5,6 +5,8 @@ node_modules
 */build
 */generated
 
+*.tsbuildinfo
+
 # Logs
 logs
 *.log
