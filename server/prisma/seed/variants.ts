@@ -113,11 +113,11 @@ export const variants: Array<VariantCreateInput> = [
     color: 'Red',
     price: 2000,
     size: 'M',
-    sku: 'cute-top-red-m',
+    sku: 't-shirt-red-m',
     stock: 0,
     product: {
       connect: {
-        name: 'Cute Top',
+        name: 'T-Shirt',
       },
     },
   },

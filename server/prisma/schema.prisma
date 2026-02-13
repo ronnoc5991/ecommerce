@@ -22,7 +22,7 @@ enum Audience {
 model Product {
   id          Int        @id @default(autoincrement())
   // Should this be a slug? if we i18n
-  name        String     @unique
+  name        String
   audience    Audience
   // How does this play with i18n? it would have to live separately
   description String     @default("")

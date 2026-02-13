@@ -39,7 +39,7 @@ export const products: Array<ProductCreateInput> = [
     },
   },
   {
-    name: 'Cute Top',
+    name: 'T-Shirt',
     audience: Audience.WOMEN,
     categories: {
       connect: {
