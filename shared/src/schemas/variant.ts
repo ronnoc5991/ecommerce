@@ -8,6 +8,8 @@ export const BaseVariantSchema = z.object({
   color: z.string(),
 });
 
+export const CreateVariantSchema = BaseVariantSchema.required();
+
 export const VariantSchema = BaseVariantSchema.extend({
   id: z.number(),
 });

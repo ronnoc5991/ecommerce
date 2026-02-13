@@ -7,3 +7,5 @@ export const BaseCategorySchema = z.object({
 export const CategorySchema = BaseCategorySchema.extend({
   id: z.number(),
 });
+
+export const CreateCategorySchema = BaseCategorySchema.required();
