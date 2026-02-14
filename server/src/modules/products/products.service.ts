@@ -14,6 +14,10 @@ export class ProductsService {
       where: {
         audience,
       },
+      include: {
+        categories: true,
+        variants: true,
+      },
     });
   }
 

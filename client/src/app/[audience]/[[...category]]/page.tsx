@@ -23,7 +23,16 @@ export default async function AudienceCategoryProductListingPage(
   return (
     <>
       {response.ok &&
-        response.data.map((product) => `${product.name} - ${product.audience}`)}
+        response.data.map((product) => (
+          <div>
+            {product.name}
+            {product.variants.map((variant) => (
+              <div>
+                {variant.color} {variant.price}
+              </div>
+            ))}
+          </div>
+        ))}
       <ProductListingPage products={[]}></ProductListingPage>
     </>
   );

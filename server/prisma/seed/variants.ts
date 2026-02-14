@@ -1,3 +1,4 @@
+import { Audience } from 'generated/prisma/enums.js';
 import { VariantCreateInput } from 'generated/prisma/models.js';
 
 export const variants: Array<VariantCreateInput> = [
@@ -10,6 +11,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Jeans',
+        audience: Audience.MEN,
       },
     },
   },
@@ -22,6 +24,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Jeans',
+        audience: Audience.MEN,
       },
     },
   },
@@ -34,6 +37,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Jeans',
+        audience: Audience.MEN,
       },
     },
   },
@@ -46,6 +50,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Bomber',
+        audience: Audience.MEN,
       },
     },
   },
@@ -58,6 +63,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Bomber',
+        audience: Audience.MEN,
       },
     },
   },
@@ -70,6 +76,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Bomber',
+        audience: Audience.MEN,
       },
     },
   },
@@ -82,6 +89,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'T-Shirt',
+        audience: Audience.MEN,
       },
     },
   },
@@ -94,6 +102,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'T-Shirt',
+        audience: Audience.MEN,
       },
     },
   },
@@ -106,6 +115,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Wool Sweater',
+        audience: Audience.WOMEN,
       },
     },
   },
@@ -118,6 +128,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'T-Shirt',
+        audience: Audience.WOMEN,
       },
     },
   },
@@ -130,6 +141,7 @@ export const variants: Array<VariantCreateInput> = [
     product: {
       connect: {
         name: 'Cute Pants',
+        audience: Audience.WOMEN,
       },
     },
   },
