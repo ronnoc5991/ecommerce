@@ -1,0 +1,47 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+
+  &:hover .variant-details {
+    opacity: 1;
+  }
+}
+
+.image {
+  // TODO: background here just for dev
+  background: $grey7;
+  aspect-ratio: 250 / 375;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-details,
+.variant-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.variant-details {
+  opacity: 0;
+  color: $grey3;
+  align-items: flex-end;
+  transition: opacity 400ms ease-in-out;
+}
+
+.variant-colors {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.color-swatches {
+  display: flex;
+  gap: 8px;
+}

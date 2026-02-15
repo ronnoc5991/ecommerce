@@ -15,9 +15,17 @@ export class ProductsService {
         audience,
       },
       include: {
-        variants: true,
+        variants: {
+          include: {
+            color: true,
+          },
+        },
         categories: true,
-        defaultVariant: true,
+        defaultVariant: {
+          include: {
+            color: true,
+          },
+        },
       },
     });
   }

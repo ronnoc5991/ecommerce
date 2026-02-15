@@ -15,24 +15,6 @@ export const products: Array<ProductCreateInput> = [
         },
       },
     },
-    variants: {
-      create: [
-        {
-          color: 'White',
-          price: 2000,
-          size: 'M',
-          sku: 't-shirt_white_m',
-          stock: 0,
-        },
-        {
-          color: 'Black',
-          price: 2000,
-          size: 'M',
-          sku: 't-shirt_black_m',
-          stock: 0,
-        },
-      ],
-    },
   },
   {
     name: 'Jeans',
@@ -46,31 +28,6 @@ export const products: Array<ProductCreateInput> = [
           name: 'Pants',
         },
       },
-    },
-    variants: {
-      create: [
-        {
-          color: 'Blue',
-          price: 12000,
-          size: 'M',
-          sku: 'jeans_blue_m',
-          stock: 0,
-        },
-        {
-          color: 'Black',
-          price: 12000,
-          size: 'M',
-          sku: 'jeans_black_m',
-          stock: 0,
-        },
-        {
-          color: 'Grey',
-          price: 12000,
-          size: 'M',
-          sku: 'jeans_grey_m',
-          stock: 0,
-        },
-      ],
     },
   },
   {
@@ -86,31 +43,6 @@ export const products: Array<ProductCreateInput> = [
         },
       },
     },
-    variants: {
-      create: [
-        {
-          color: 'Blue',
-          price: 9000,
-          size: 'M',
-          sku: 'bomber_blue_m',
-          stock: 0,
-        },
-        {
-          color: 'Black',
-          price: 9000,
-          size: 'M',
-          sku: 'bomber_black_m',
-          stock: 0,
-        },
-        {
-          color: 'Red',
-          price: 9000,
-          size: 'M',
-          sku: 'bomber_red_m',
-          stock: 0,
-        },
-      ],
-    },
   },
   {
     name: 'Wool Sweater',
@@ -123,15 +55,6 @@ export const products: Array<ProductCreateInput> = [
         create: {
           name: 'Sweaters',
         },
-      },
-    },
-    variants: {
-      create: {
-        color: 'Blue',
-        price: 2000,
-        size: 'M',
-        sku: 'wool-sweater-blue-m',
-        stock: 0,
       },
     },
   },
@@ -148,15 +71,6 @@ export const products: Array<ProductCreateInput> = [
         },
       },
     },
-    variants: {
-      create: {
-        color: 'Red',
-        price: 2000,
-        size: 'M',
-        sku: 't-shirt-red-m',
-        stock: 0,
-      },
-    },
   },
   {
     name: 'Cute Pants',
@@ -169,15 +83,6 @@ export const products: Array<ProductCreateInput> = [
         where: {
           name: 'Pants',
         },
-      },
-    },
-    variants: {
-      create: {
-        color: 'Blue',
-        price: 2000,
-        size: 'M',
-        sku: 'cute-pants-blue-m',
-        stock: 0,
       },
     },
   },

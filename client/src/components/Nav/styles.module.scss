@@ -15,7 +15,7 @@ $navBottomBorder: 1px;
   justify-content: space-between;
   align-items: center;
   background: $white;
-  border-bottom: $navBottomBorder solid $grey;
+  border-bottom: $navBottomBorder solid $grey1;
 }
 
 .menu {
@@ -29,6 +29,6 @@ $navBottomBorder: 1px;
   position: absolute;
   inset: 100% 0 auto 0;
   height: calc(100vh - (100% + #{$navHeight}));
-  background-color: $lightGrey;
+  background-color: $grey3;
   opacity: 0.2;
 }
