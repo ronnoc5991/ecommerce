@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const BaseVariantSchema = z.object({
+export const BaseProductVariantSchema = z.object({
   sku: z.string(),
   price: z.int(),
   stock: z.int(),
@@ -8,8 +8,8 @@ export const BaseVariantSchema = z.object({
   color: z.string(),
 });
 
-export const CreateVariantSchema = BaseVariantSchema.required();
+export const CreateProductVariantSchema = BaseProductVariantSchema.required();
 
-export const VariantSchema = BaseVariantSchema.extend({
+export const ProductVariantSchema = BaseProductVariantSchema.extend({
   id: z.number(),
 });

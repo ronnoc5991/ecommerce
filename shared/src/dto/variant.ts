@@ -1,6 +1,11 @@
 import z from "zod";
-import { CreateVariantSchema, VariantSchema } from "../schemas/index.js";
+import {
+  CreateProductVariantSchema,
+  ProductVariantSchema,
+} from "../schemas/index.js";
 
-export type VariantDTO = z.infer<typeof VariantSchema>;
+export type ProductVariantDTO = z.infer<typeof ProductVariantSchema>;
 
-export type CreateVariantDTO = z.infer<typeof CreateVariantSchema>;
+export type CreateProductVariantDTO = z.infer<
+  typeof CreateProductVariantSchema
+>;

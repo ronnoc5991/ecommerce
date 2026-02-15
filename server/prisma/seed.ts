@@ -15,21 +15,24 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   console.log('Seeding database...');
 
-  const { categories } = await import('./seed/categories.js');
   const { products } = await import('./seed/products.js');
-  const { variants } = await import('./seed/variants.js');
 
   // Use for loop instead of `await Promise.all` for stable insertion order
-  for (const data of categories) {
-    await prisma.category.create({ data });
-  }
 
   for (const data of products) {
-    await prisma.product.create({ data });
-  }
+    const product = await prisma.product.create({
+      data,
+      include: { variants: true },
+    });
 
-  for (const data of variants) {
-    await prisma.variant.create({ data });
+    await prisma.product.update({
+      where: {
+        id: product.id,
+      },
+      data: {
+        defaultVariantId: product.variants[0].id,
+      },
+    });
   }
 
   console.log('Seeding complete.');

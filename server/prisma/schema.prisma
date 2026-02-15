@@ -20,31 +20,34 @@ enum Audience {
 }
 
 model Product {
-  id          Int        @id @default(autoincrement())
+  id               Int              @id @default(autoincrement())
   // Should this be a slug? if we i18n
-  name        String
-  audience    Audience
+  name             String
+  audience         Audience
   // How does this play with i18n? it would have to live separately
-  description String     @default("")
-  variants    Variant[]
-  categories  Category[]
+  description      String           @default("")
+  defaultVariantId Int?
+  defaultVariant   ProductVariant?  @relation("DefaultVariant", fields: [defaultVariantId], references: [id])
+  variants         ProductVariant[] @relation("ProductVariants")
+  categories       Category[]
 }
 
-model Variant {
-  id        Int            @id @default(autoincrement())
-  sku       String         @unique
-  price     Int
-  stock     Int
+model ProductVariant {
+  id         Int            @id @default(autoincrement())
+  sku        String         @unique
+  price      Int
+  stock      Int
   // NOTE: size and color are denormalized for now... can normalize later
   // NORMALIZING SIZE:
   // could create size systems, sizes belong to systems, each size has a displayOrder attribute for sorting
-  size      String
+  size       String
   // NORMALIZING COLOR:
   // could create 'color families' (ie: red, blue, green) and colors that belong to families (ie: crimson, aqua, etc), then each variant has a color which belongs to a family
-  color     String
-  images    VariantImage[]
-  productId Int
-  product   Product        @relation(fields: [productId], references: [id])
+  color      String
+  images     VariantImage[]
+  productId  Int
+  product    Product        @relation("ProductVariants", fields: [productId], references: [id], onDelete: Cascade)
+  defaultFor Product[]      @relation("DefaultVariant")
 }
 
 model Category {
@@ -55,8 +58,8 @@ model Category {
 }
 
 model VariantImage {
-  id        Int     @id @default(autoincrement())
+  id        Int            @id @default(autoincrement())
   url       String
   variantId Int
-  variant   Variant @relation(fields: [variantId], references: [id])
+  variant   ProductVariant @relation(fields: [variantId], references: [id])
 }

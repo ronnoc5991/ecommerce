@@ -15,8 +15,9 @@ export class ProductsService {
         audience,
       },
       include: {
-        categories: true,
         variants: true,
+        categories: true,
+        defaultVariant: true,
       },
     });
   }
