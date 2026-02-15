@@ -1,5 +1,14 @@
 # TODO
 
+Site Structure:
+
+- Home
+- Audience: /mens /womens
+- Category: /mens/[category] /womens/[category]
+- Product(Variant): /products/[sku]
+
+- Add 'transformer' functions that turn DTOs into UI types before passing down the UI tree
+
 - think through nice API for 'shared' exports...
 - should there be a default export? Or everything separately exported?
 - what should the thing we import be called?
