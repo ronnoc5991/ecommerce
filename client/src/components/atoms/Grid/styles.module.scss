@@ -1,6 +1,10 @@
+$gutter: 12px;
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  gap: $gutter;
+  padding-inline: $gutter;
 
   @include tablet {
     grid-template-columns: repeat(4, 1fr);
