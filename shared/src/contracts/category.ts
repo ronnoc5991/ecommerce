@@ -1,13 +1,6 @@
 import z from "zod";
-import { CategorySchema, CreateCategorySchema } from "../schemas/index.js";
+import { CategorySchema } from "../schemas/index.js";
 import { createContract } from "../utils/create-contract.js";
-
-export const Create = createContract({
-  httpMethod: "POST",
-  getClientPath: () => "/categories",
-  body: CreateCategorySchema,
-  response: CategorySchema,
-});
 
 export const GetAll = createContract({
   httpMethod: "GET",
@@ -16,6 +9,5 @@ export const GetAll = createContract({
 });
 
 export default {
-  create: Create,
   getAll: GetAll,
 };

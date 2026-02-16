@@ -1,17 +1,11 @@
 import z from "zod";
 import { ColorSchema } from "./color.js";
 
-export const BaseProductVariantSchema = z.object({
-  sku: z.string(),
-  priceCents: z.int(),
-  stock: z.int(),
-  size: z.string(),
-  color: z.string(),
-});
-
-export const CreateProductVariantSchema = BaseProductVariantSchema.required();
-
-export const ProductVariantSchema = BaseProductVariantSchema.extend({
+export const ProductVariantSchema = z.object({
   id: z.number(),
+  stock: z.int(),
+  sku: z.string(),
+  size: z.string(),
   color: ColorSchema,
+  priceCents: z.int(),
 });

@@ -1,11 +1,6 @@
 import z from "zod";
 
-export const BaseCategorySchema = z.object({
+export const CategorySchema = z.object({
+  id: z.number(),
   name: z.string(),
 });
-
-export const CategorySchema = BaseCategorySchema.extend({
-  id: z.number(),
-});
-
-export const CreateCategorySchema = BaseCategorySchema.required();
