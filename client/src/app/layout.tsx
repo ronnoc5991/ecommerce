@@ -1,7 +1,7 @@
 "use client";
 // import type { Metadata } from "next";
 import { useState } from "react";
-import Nav from "@/components/Nav/Nav";
+import Nav from "@/components/organisms/Nav/Nav";
 import "./globals.scss";
 import "./reset.scss";
 
