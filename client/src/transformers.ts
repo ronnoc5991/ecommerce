@@ -16,7 +16,7 @@ function formatProductVariant(
 ): ProductVariant {
   return {
     color: productVariantDTO.color,
-    price: formatPrice(productVariantDTO.price),
+    price: formatPrice(productVariantDTO.priceCents),
     sku: productVariantDTO.sku,
   };
 }
