@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { AudienceSchema } from "shared";
 import apiClient from "@/api-client";
 import ProductListingPage from "@/components/templates/ProductListingPage/ProductListingPage";
+import { toProduct } from "@/transformers";
 
 export default async function AudienceCategoryProductListingPage(
   props: PageProps<"/[audience]/[[...category]]">,
@@ -17,23 +18,13 @@ export default async function AudienceCategoryProductListingPage(
 
   const response = await apiClient.product.getAll({ audience: result.data });
 
-  // TODO: include category slug later
-  // what about categories? Do we have an enum for that? No... should we?  Not sure...
-
   return (
     <>
-      {response.ok &&
-        response.data.map((product) => (
-          <div>
-            {product.name}
-            {product.variants.map((variant) => (
-              <div>
-                {variant.color} {variant.price}
-              </div>
-            ))}
-          </div>
-        ))}
-      <ProductListingPage products={[]}></ProductListingPage>
+      {response.ok && (
+        <ProductListingPage
+          products={response.data.map(toProduct)}
+        ></ProductListingPage>
+      )}
     </>
   );
 }
