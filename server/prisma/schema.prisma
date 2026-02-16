@@ -35,7 +35,7 @@ model Product {
 model ProductVariant {
   id         Int            @id @default(autoincrement())
   sku        String         @unique
-  price      Int
+  priceCents      Int
   stock      Int
   // NORMALIZING SIZE:
   // could create size systems, sizes belong to systems, each size has a displayOrder attribute for sorting

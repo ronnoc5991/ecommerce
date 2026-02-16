@@ -3,7 +3,7 @@ import { ColorSchema } from "./color.js";
 
 export const BaseProductVariantSchema = z.object({
   sku: z.string(),
-  price: z.int(),
+  priceCents: z.int(),
   stock: z.int(),
   size: z.string(),
   color: z.string(),

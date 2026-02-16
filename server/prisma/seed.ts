@@ -44,7 +44,7 @@ async function main() {
       for (const size of sizes) {
         const variant = await prisma.productVariant.create({
           data: {
-            price: 10000,
+            priceCents: 10000,
             size,
             sku: [
               product.audience.toLowerCase(),
