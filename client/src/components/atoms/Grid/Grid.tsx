@@ -1,10 +1,12 @@
 import { HTMLElementType, PropsWithChildren } from "react";
+import { PropsWithClassName } from "@/types/component";
 import styles from "./styles.module.scss";
 
-type GridProps = PropsWithChildren<{
-  as?: HTMLElementType;
-  className?: string;
-}>;
+type GridProps = PropsWithClassName<
+  PropsWithChildren<{
+    as?: HTMLElementType;
+  }>
+>;
 
 export default function Grid({ as = "div", className, children }: GridProps) {
   const Tag = as;
