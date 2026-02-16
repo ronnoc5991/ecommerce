@@ -3,15 +3,11 @@
   flex-direction: column;
 }
 
-.title,
-.list {
-  padding: $paddingSmall;
-}
-
 .title {
   top: 0;
   position: sticky;
   background: var(--background);
+  padding: $paddingSmall;
 
   &::after {
     content: "";
@@ -26,4 +22,8 @@
   &--sticky::after {
     transform: scaleX(1);
   }
+}
+
+.list {
+  padding-inline: $paddingSmall;
 }
