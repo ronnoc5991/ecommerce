@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { AudienceSchema } from "shared";
 import apiClient from "@/api-client";
-import ProductListingPage from "@/components/templates/ProductListingPage/ProductListingPage";
 import { toProduct } from "@/transformers";
+import ProductListing from "@/components/organisms/ProductListing/ProductListing";
 
 export default async function AudienceCategoryProductListingPage(
   props: PageProps<"/[audience]/[[...category]]">,
@@ -16,15 +16,20 @@ export default async function AudienceCategoryProductListingPage(
     notFound();
   }
 
-  const response = await apiClient.product.getAll({ audience: result.data });
+  const response = await apiClient.catalog.get({ audience: result.data });
 
   return (
     <>
-      {response.ok && (
-        <ProductListingPage
-          products={response.data.map(toProduct)}
-        ></ProductListingPage>
-      )}
+      {response.ok &&
+        response.data.categories.map((category) => {
+          return (
+            <ProductListing
+              key={category.id}
+              title={category.name}
+              products={category.products.map(toProduct)}
+            ></ProductListing>
+          );
+        })}
     </>
   );
 }

@@ -35,6 +35,14 @@ export function createClient(config: ClientConfig) {
         });
       },
     },
+    catalog: {
+      async get(params: { audience: Audience }) {
+        return clientFetch({
+          contract: contracts.catalog.get,
+          params,
+        });
+      },
+    },
     variant: {
       async getOne(sku: string) {
         return clientFetch({

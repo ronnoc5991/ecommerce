@@ -1,13 +1,31 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { CatalogService } from './catalog.service.js';
+import { type ContractFulfillment } from 'src/types/ContractFulfillment.js';
+import api, { AudienceSchema } from 'shared';
+
+const { get } = api.contracts.catalog;
 
 @Controller('catalog')
 export class CatalogController {
   constructor(private readonly service: CatalogService) {}
 
   @Get()
-  async get() {
-    const message = await this.service.get();
-    return { message };
+  async get(
+    @Query('audience') audience: string,
+  ): ContractFulfillment<typeof get> {
+    const parsedAudience = AudienceSchema.safeParse(audience.toUpperCase());
+
+    if (!parsedAudience.success) {
+      throw new Error('Invalid audience');
+    }
+
+    const catalog = await this.service.getByAudience(parsedAudience.data);
+
+    return {
+      data: get.response.parse({
+        audience: parsedAudience.data,
+        categories: catalog,
+      }),
+    };
   }
 }

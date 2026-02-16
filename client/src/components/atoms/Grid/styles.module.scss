@@ -1,16 +1,9 @@
-$gutter: 12px;
-
 .grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: $gutter;
-  padding-inline: $gutter;
+  gap: $gutterSmall;
+  grid-template-columns: repeat(2, 1fr);
 
   @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include desktop {
     grid-template-columns: repeat(4, 1fr);
   }
 }
