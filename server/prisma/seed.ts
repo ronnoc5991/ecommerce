@@ -1,6 +1,9 @@
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
-import { Color, PrismaClient } from '../generated/prisma/client.js';
-import { ProductVariant } from 'generated/prisma/browser.js';
+import {
+  Color,
+  PrismaClient,
+  ProductVariant,
+} from '../generated/prisma/client.js';
 
 const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST,

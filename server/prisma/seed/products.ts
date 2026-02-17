@@ -3,43 +3,155 @@ import { ProductCreateInput } from 'generated/prisma/models.js';
 
 export const products: Array<ProductCreateInput> = [
   {
-    name: 'T-Shirt',
+    name: 'The T-Shirt',
     audience: Audience.MEN,
     categories: {
       connectOrCreate: {
         create: {
-          name: 'Shirts',
+          name: 'T-Shirts',
         },
         where: {
-          name: 'Shirts',
+          name: 'T-Shirts',
         },
       },
     },
   },
   {
-    name: 'Jeans',
+    name: 'The Long Sleeve T-Shirt',
     audience: Audience.MEN,
     categories: {
       connectOrCreate: {
         create: {
-          name: 'Pants',
+          name: 'T-Shirts',
         },
         where: {
-          name: 'Pants',
+          name: 'T-Shirts',
         },
       },
     },
   },
   {
-    name: 'Bomber',
+    name: 'The Lightweight T-Shirt',
     audience: Audience.MEN,
     categories: {
       connectOrCreate: {
         create: {
-          name: 'Jackets',
+          name: 'T-Shirts',
         },
         where: {
-          name: 'Jackets',
+          name: 'T-Shirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Polo',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'T-Shirts',
+        },
+        where: {
+          name: 'T-Shirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Long Sleeve Polo',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'T-Shirts',
+        },
+        where: {
+          name: 'T-Shirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Oxford Shirt',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'Shirts & Overshirts',
+        },
+        where: {
+          name: 'Shirts & Overshirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Denim Shirt',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'Shirts & Overshirts',
+        },
+        where: {
+          name: 'Shirts & Overshirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Flannel Shirt',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'Shirts & Overshirts',
+        },
+        where: {
+          name: 'Shirts & Overshirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Wool Overshirt',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'Shirts & Overshirts',
+        },
+        where: {
+          name: 'Shirts & Overshirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Overshirt',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'Shirts & Overshirts',
+        },
+        where: {
+          name: 'Shirts & Overshirts',
+        },
+      },
+    },
+  },
+  {
+    name: 'The Linen Shirt',
+    audience: Audience.MEN,
+    categories: {
+      connectOrCreate: {
+        create: {
+          name: 'Shirts & Overshirts',
+        },
+        where: {
+          name: 'Shirts & Overshirts',
         },
       },
     },
@@ -64,24 +176,10 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
-          name: 'Shirts',
+          name: 'T-Shirts',
         },
         where: {
-          name: 'Shirts',
-        },
-      },
-    },
-  },
-  {
-    name: 'Cute Pants',
-    audience: Audience.WOMEN,
-    categories: {
-      connectOrCreate: {
-        create: {
-          name: 'Pants',
-        },
-        where: {
-          name: 'Pants',
+          name: 'T-Shirts',
         },
       },
     },
