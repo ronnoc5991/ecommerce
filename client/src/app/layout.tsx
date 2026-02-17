@@ -1,6 +1,7 @@
 "use client";
 // import type { Metadata } from "next";
 import { useState } from "react";
+import localFont from "next/font/local";
 import Nav from "@/components/organisms/Nav/Nav";
 import "./globals.scss";
 import "./reset.scss";
@@ -12,6 +13,12 @@ import "./reset.scss";
 //   description: "E-Commerce Application",
 // };
 
+const montserrat = localFont({
+  src: "../assets/fonts/Montserrat-Regular.ttf",
+  weight: "400",
+  style: "normal",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,7 +27,7 @@ export default function RootLayout({
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   return (
-    <html lang="en">
+    <html lang="en" className={montserrat.className}>
       <body style={{ overflow: isNavOpen ? "hidden" : "initial" }}>
         <header>
           <Nav

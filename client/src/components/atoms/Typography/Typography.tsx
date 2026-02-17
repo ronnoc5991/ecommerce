@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import { PropsWithClassName } from "@/types/component";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 type TypographyProps = PropsWithClassName<
   PropsWithChildren<{
@@ -14,5 +15,5 @@ export default function Typography({
   className,
 }: TypographyProps) {
   const Tag = as;
-  return <Tag className={clsx(className)}>{children}</Tag>;
+  return <Tag className={clsx(styles.typography, className)}>{children}</Tag>;
 }
