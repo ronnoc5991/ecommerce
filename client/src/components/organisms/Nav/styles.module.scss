@@ -8,7 +8,6 @@ $navHeight: 40px;
 $navBottomBorder: 1px;
 
 .nav {
-  position: relative;
   padding: 12px;
   height: $navHeight;
   display: flex;
@@ -19,10 +18,11 @@ $navBottomBorder: 1px;
 }
 
 .menu {
-  position: absolute;
-  inset: calc(100% + #{$navBottomBorder}) 0 auto 0;
+  z-index: $zTop;
+  position: fixed;
+  inset: calc(#{$navHeight} + #{$navBottomBorder}) 0 auto 0;
+  padding: $paddingLarge;
   background: $white;
-  height: 100px;
 }
 
 .backdrop {
