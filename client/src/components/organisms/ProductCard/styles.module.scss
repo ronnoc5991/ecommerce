@@ -3,8 +3,10 @@
   flex-direction: column;
   gap: 12px;
 
-  &:hover .variant-details {
-    opacity: 1;
+  @include desktop {
+    &:hover .variant-details {
+      opacity: 1;
+    }
   }
 }
 
@@ -16,7 +18,14 @@
 
 .details {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: $gutterSmall;
+
+  @include desktop {
+    gap: 0;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .product-details,
@@ -28,10 +37,15 @@
 }
 
 .variant-details {
-  opacity: 0;
   color: $grey3;
-  align-items: flex-end;
-  transition: opacity 400ms ease-in-out;
+
+  @include desktop {
+    opacity: 0;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    transition: opacity 400ms ease-in-out;
+    text-align: end;
+  }
 }
 
 .variant-colors {

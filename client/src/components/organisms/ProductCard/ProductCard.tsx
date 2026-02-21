@@ -29,6 +29,11 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Typography as="span">{product.defaultVariant.price} USD</Typography>
         </div>
         <div className={styles["variant-details"]}>
+          <div>
+            <Typography as="span">
+              {product.defaultVariant.color.name}
+            </Typography>
+          </div>
           <div className={styles["variant-colors"]}>
             <div className={styles["color-swatches"]}>
               {firstThreeVariantColors.map((hex) => (
@@ -38,11 +43,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             {additionalVariantCount > 0 && (
               <Typography as="span">+{additionalVariantCount}</Typography>
             )}
-          </div>
-          <div>
-            <Typography as="span">
-              {product.defaultVariant.color.name}
-            </Typography>
           </div>
         </div>
       </div>
