@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { AudienceSchema } from "shared";
-import apiClient from "@/api-client";
+import catalogService from "@/services/catalog";
 import { toProduct } from "@/transformers";
 import ProductListingPage, {
   ProductListingPageProps,
@@ -17,7 +17,7 @@ export default async function AudienceProductListingPage(
     notFound();
   }
 
-  const response = await apiClient.catalog.get({ audience: result.data });
+  const response = await catalogService.catalog.get({ audience: result.data });
 
   if (!response.ok) {
     // TODO: temp... need to handle this differently

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { AudienceSchema } from "shared";
-import apiClient from "@/api-client";
+import catalogService from "@/services/catalog";
 import { productToProducts } from "@/transformers";
 import ProductListingPage, {
   ProductListingPageProps,
@@ -17,7 +17,7 @@ export default async function AudienceCategoryProductListingPage(
     notFound();
   }
 
-  const response = await apiClient.category.getOne({
+  const response = await catalogService.category.getOne({
     slug: category,
     audience: parsedAudience.data,
   });
