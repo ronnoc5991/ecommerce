@@ -1,13 +1,17 @@
-export type Product = {
-  id: number;
+export type ProductColor = {
   name: string;
-  defaultVariant: ProductVariant;
-  variants: Array<ProductVariant>;
+  hex: string;
+};
+
+export type Product = {
+  sku: string;
+  name: string;
+  price: string;
+  color: ProductColor;
+  availableColors: Array<ProductColor>;
 };
 
 export type ProductVariant = {
-  sku: string;
-  price: string;
   color: {
     name: string;
     hex: string;

@@ -31,8 +31,8 @@ export default function ProductListing({
       </div>
       <Grid as="ul" className={styles.list}>
         {products.map((product) => (
-          <li key={product.id}>
-            <a href={`/products/${product.defaultVariant.sku}`}>
+          <li key={product.sku}>
+            <a href={`/products/${product.sku}`}>
               <ProductCard product={product} />
             </a>
           </li>

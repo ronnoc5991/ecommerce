@@ -8,10 +8,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 't-shirts',
           name: 'T-Shirts',
         },
         where: {
-          name: 'T-Shirts',
+          slug: 't-shirts',
         },
       },
     },
@@ -22,10 +23,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 't-shirts',
           name: 'T-Shirts',
         },
         where: {
-          name: 'T-Shirts',
+          slug: 't-shirts',
         },
       },
     },
@@ -36,10 +38,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 't-shirts',
           name: 'T-Shirts',
         },
         where: {
-          name: 'T-Shirts',
+          slug: 't-shirts',
         },
       },
     },
@@ -50,10 +53,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 't-shirts',
           name: 'T-Shirts',
         },
         where: {
-          name: 'T-Shirts',
+          slug: 't-shirts',
         },
       },
     },
@@ -64,10 +68,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 't-shirts',
           name: 'T-Shirts',
         },
         where: {
-          name: 'T-Shirts',
+          slug: 't-shirts',
         },
       },
     },
@@ -78,10 +83,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 'shirts-and-overshirts',
           name: 'Shirts & Overshirts',
         },
         where: {
-          name: 'Shirts & Overshirts',
+          slug: 'shirts-and-overshirts',
         },
       },
     },
@@ -92,10 +98,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 'shirts-and-overshirts',
           name: 'Shirts & Overshirts',
         },
         where: {
-          name: 'Shirts & Overshirts',
+          slug: 'shirts-and-overshirts',
         },
       },
     },
@@ -106,10 +113,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 'shirts-and-overshirts',
           name: 'Shirts & Overshirts',
         },
         where: {
-          name: 'Shirts & Overshirts',
+          slug: 'shirts-and-overshirts',
         },
       },
     },
@@ -120,10 +128,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 'shirts-and-overshirts',
           name: 'Shirts & Overshirts',
         },
         where: {
-          name: 'Shirts & Overshirts',
+          slug: 'shirts-and-overshirts',
         },
       },
     },
@@ -134,10 +143,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 'shirts-and-overshirts',
           name: 'Shirts & Overshirts',
         },
         where: {
-          name: 'Shirts & Overshirts',
+          slug: 'shirts-and-overshirts',
         },
       },
     },
@@ -148,10 +158,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 'shirts-and-overshirts',
           name: 'Shirts & Overshirts',
         },
         where: {
-          name: 'Shirts & Overshirts',
+          slug: 'shirts-and-overshirts',
         },
       },
     },
@@ -161,11 +172,12 @@ export const products: Array<ProductCreateInput> = [
     audience: Audience.WOMEN,
     categories: {
       connectOrCreate: {
-        where: {
+        create: {
+          slug: 'sweaters',
           name: 'Sweaters',
         },
-        create: {
-          name: 'Sweaters',
+        where: {
+          slug: 'sweaters',
         },
       },
     },
@@ -176,10 +188,11 @@ export const products: Array<ProductCreateInput> = [
     categories: {
       connectOrCreate: {
         create: {
+          slug: 't-shirts',
           name: 'T-Shirts',
         },
         where: {
-          name: 'T-Shirts',
+          slug: 't-shirts',
         },
       },
     },

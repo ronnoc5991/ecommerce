@@ -4,7 +4,7 @@ import { prisma } from '../../../lib/prisma.js';
 
 @Injectable()
 export class CatalogService {
-  async getByAudience(audience: Audience) {
+  async getSegmentedProducts(audience: Audience) {
     const result = await prisma.category.findMany({
       where: {
         products: {

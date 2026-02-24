@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import api, { AudienceSchema } from 'shared';
 import { CatalogService } from './catalog.service.js';
 import { type ContractFulfillment } from 'src/types/ContractFulfillment.js';
-import api, { AudienceSchema } from 'shared';
 
 const { get } = api.contracts.catalog;
 
@@ -19,7 +19,9 @@ export class CatalogController {
       throw new Error('Invalid audience');
     }
 
-    const catalog = await this.service.getByAudience(parsedAudience.data);
+    const catalog = await this.service.getSegmentedProducts(
+      parsedAudience.data,
+    );
 
     return {
       data: get.response.parse({

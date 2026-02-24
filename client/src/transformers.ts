@@ -1,5 +1,5 @@
-import { Product, ProductVariant } from "@/types";
-import { ProductVariantDTO, ProductWithVariantsDTO } from "shared";
+import { Product, ProductColor } from "@/types";
+import { ProductWithVariantsDTO } from "shared";
 
 function formatPrice(cents: number) {
   const hasCents = cents % 100 !== 0;
@@ -11,21 +11,35 @@ function formatPrice(cents: number) {
   }).format(cents / 100);
 }
 
-function formatProductVariant(
-  productVariantDTO: ProductVariantDTO,
-): ProductVariant {
-  return {
-    color: productVariantDTO.color,
-    price: formatPrice(productVariantDTO.priceCents),
-    sku: productVariantDTO.sku,
-  };
+export function productToProducts(
+  productDTO: ProductWithVariantsDTO,
+): Array<Product> {
+  const uniqueAvailableColors = new Set<ProductColor>();
+  productDTO.variants.forEach((v) => uniqueAvailableColors.add(v.color));
+
+  // the problem is not how we got the colors...
+  // we are going over every variant... including size
+  // we don't really want to do that with size...
+  // we just want each unique variant where unique is a color
+  // do not duplicate for each size...
+
+  // const availableColors = productDTO.variants.map((v) => v.color);
+  // need to get all of the colors from the variants...
+  return productDTO.variants.map(({ sku, priceCents, color }) => ({
+    sku,
+    color,
+    name: productDTO.name,
+    price: formatPrice(priceCents),
+    availableColors: Array.from(uniqueAvailableColors),
+  }));
 }
 
 export function toProduct(productDTO: ProductWithVariantsDTO): Product {
   return {
-    id: productDTO.id,
     name: productDTO.name,
-    defaultVariant: formatProductVariant(productDTO.defaultVariant),
-    variants: productDTO.variants.map(formatProductVariant),
+    sku: productDTO.defaultVariant.sku,
+    color: productDTO.defaultVariant.color,
+    price: formatPrice(productDTO.defaultVariant.priceCents),
+    availableColors: productDTO.variants.map((v) => v.color),
   };
 }

@@ -4,8 +4,14 @@ import { Audience } from "../types/index.js";
 
 export const Get = createContract({
   httpMethod: "GET",
-  getClientPath: ({ audience }: { audience: Audience }) =>
-    `/catalog?audience=${audience}`,
+  getClientPath: ({
+    audience,
+    category,
+  }: {
+    audience: Audience;
+    category?: string;
+  }) =>
+    `/catalog?audience=${audience}${category ? `&category=${category}` : ""}`,
   response: CatalogSchema,
 });
 

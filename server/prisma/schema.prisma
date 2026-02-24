@@ -35,7 +35,7 @@ model Product {
 model ProductVariant {
   id         Int            @id @default(autoincrement())
   sku        String         @unique
-  priceCents      Int
+  priceCents Int
   stock      Int
   // NORMALIZING SIZE:
   // could create size systems, sizes belong to systems, each size has a displayOrder attribute for sorting
@@ -52,8 +52,8 @@ model ProductVariant {
 
 model Category {
   id       Int       @id @default(autoincrement())
-  // should this be a slug already? we want to avoid casing conflicts... 'Shirt' vs 'shirt'
-  name     String    @unique
+  name     String
+  slug     String    @unique
   products Product[]
 }
 

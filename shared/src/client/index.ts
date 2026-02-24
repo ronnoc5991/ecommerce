@@ -20,6 +20,12 @@ export function createClient(config: ClientConfig) {
           params: undefined,
         });
       },
+      async getOne(params: { slug: string; audience: Audience }) {
+        return clientFetch({
+          contract: contracts.category.getOne,
+          params,
+        });
+      },
     },
     product: {
       async getAll(params: { audience: Audience }) {
@@ -36,7 +42,7 @@ export function createClient(config: ClientConfig) {
       },
     },
     catalog: {
-      async get(params: { audience: Audience }) {
+      async get(params: { audience: Audience; category?: string }) {
         return clientFetch({
           contract: contracts.catalog.get,
           params,
