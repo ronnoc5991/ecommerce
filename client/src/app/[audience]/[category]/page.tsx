@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { AudienceSchema } from "shared";
-import catalogService from "@/services/catalog";
+import services from "@/services";
 import { productToProducts } from "@/transformers";
 import ProductListingPage, {
   ProductListingPageProps,
@@ -17,7 +17,7 @@ export default async function AudienceCategoryProductListingPage(
     notFound();
   }
 
-  const response = await catalogService.category.getOne({
+  const response = await services.catalog.category.getOne({
     slug: category,
     audience: parsedAudience.data,
   });

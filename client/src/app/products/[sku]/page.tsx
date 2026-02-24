@@ -1,4 +1,4 @@
-import catalogService from "@/services/catalog";
+import services from "@/services";
 // given a product variant's sku
 // fetch its parent product?
 // get parent product by child sku?
@@ -13,7 +13,7 @@ export default async function ProductDetailPage(
   const { sku } = await props.params;
   // TODO: this endpoint needs to take a variant sku and return... variant with product?
   // or the product with the variant?
-  const response = await catalogService.products.getOne(sku);
+  const response = await services.catalog.products.getOne(sku);
 
   return (
     <div>
